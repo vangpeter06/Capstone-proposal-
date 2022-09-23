@@ -16,4 +16,4 @@
 * 1pm-2pm: watching tutorial/coding along https://www.youtube.com/watch?v=0-S5a0eXPoc
 * 2pm-3pm: watching tutorial https://www.youtube.com/watch?v=VozPNrt-LfE
 * 3pm-4pm:watching tutorial/coding along https://www.youtube.com/watch?v=VozPNrt-LfE
-* 4pm-5pm:
+* 4pm-5pm: watching tutorial/coding along https://www.youtube.com/watch?v=VozPNrt-LfE
