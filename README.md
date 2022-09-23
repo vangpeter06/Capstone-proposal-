@@ -6,3 +6,5 @@
 2pm-3pm: researching on error error : /usr/local/share/dotnet/packs/Microsoft.iOS.Sdk/15.4.447/tools/bin/mlaunch exited with code 1 
 3pm-4pm: Researching on iOS sdk
 4pm-5pm: Researching Andriod sdk
+
+8am-9am: research about react native
