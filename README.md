@@ -1,3 +1,4 @@
+9/16/22
 8am-9am: Researching how to start project
 9am-10am: Researching which language to use
 10am-11am: watching tutorial https://www.youtube.com/watch?v=rumfIg9qJ_Y
@@ -10,3 +11,4 @@
 9/23/22
 8am-9am: research about react native
 9am-10am: watching tutorial https://www.youtube.com/watch?v=0-S5a0eXPoc
+10am-11am: watching tutorial/coding along https://www.youtube.com/watch?v=0-S5a0eXPoc
