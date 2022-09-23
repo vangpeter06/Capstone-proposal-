@@ -7,4 +7,6 @@
 3pm-4pm: Researching on iOS sdk
 4pm-5pm: Researching Andriod sdk
 
+9/23/22
 8am-9am: research about react native
+9am-10am: watching tutorial https://www.youtube.com/watch?v=0-S5a0eXPoc
