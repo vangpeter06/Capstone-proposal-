@@ -83,7 +83,7 @@ export default function SignUp({ navigation }) {
         </View>
         <Button title="Sign Up" color="#f7b267" />
       </KeyboardAvoidingView>
-
+     
     </ImageBackground>
   );
 }
