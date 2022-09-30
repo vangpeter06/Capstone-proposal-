@@ -6,6 +6,7 @@ import {
   TextInput,
   Button,
   KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import AppStyles from "../styles/AppStyles";
 import React from "react";
@@ -18,6 +19,16 @@ export default function SignUp({ navigation }) {
   let [password, setPassword] = React.useState("");
   let [confirmPassword, setConfirmPassword] = React.useState("");
   let [validationMessage, setValidationMessage] = React.useState("");
+
+  let validateAndSet = (value, valueToCompare, setValue) => {
+    if (value !== valueToCompare) {
+      setValidationMessage("Passwords do not match.");
+    } else {
+      setValidationMessage("");
+    }
+
+    setValue(value);
+  };
 
   return (
     <ImageBackground style={AppStyles.container} source={background}>
@@ -61,7 +72,7 @@ export default function SignUp({ navigation }) {
           placeholderTextColor={"#BEBEBE"}
           secureTextEntry={true}
           value={confirmPassword}
-          onChangeText={setConfirmPassword}
+          onChangeText={(value) => validateAndSet(value, password, setConfirmPassword)}
         />
         <View style={[AppStyles.rowContainer, AppStyles.topMargin]}>
           <Text style={AppStyles.lightText}>:Already Have account </Text>
