@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, ImageBackground, TextInput } from 'react-native';
+import { Text, View, ImageBackground, TextInput, Button, KeyboardAvoidingView } from 'react-native';
 import AppStyles from './styles/AppStyles';
 import React from 'react';
 import InlineTextButton from './components/InlineTextButton';
@@ -14,7 +14,10 @@ export default function App() {
   
   return (
     <ImageBackground style={AppStyles.container} source={background}>
-      <View style={AppStyles.backgroundCover}>
+      <KeyboardAvoidingView 
+        style={AppStyles.backgroundCover}
+        behavior={Platform.OS === "ios" ? "padding" : null}
+        keyboardVerticalOffset={90} >
         <Text style={[AppStyles.lightText, AppStyles.header]}>Login</Text>
         <TextInput style={[AppStyles.textInput, AppStyles.lightTextInput, AppStyles.lightText,]}
         placeholder="Email"
@@ -36,11 +39,17 @@ export default function App() {
             onPress={() => navigation.navigate("SignUp")}
           />
         </View>
-         
+        <View style={[AppStyles.rowContainer, AppStyles.bottomMargin]}>
+          <Text style={AppStyles.lightText}>Forgotten your password? </Text>
+          <InlineTextButton
+            text="Reset"
+            onPress={() => navigation.navigate("ResetPassword")}
+          />
+        </View>
       
 
-        
-      </View>
+        <Button title="Login" color="#f7b267" />  
+      </KeyboardAvoidingView>
       
       <StatusBar style="auto" />
     </ImageBackground>
