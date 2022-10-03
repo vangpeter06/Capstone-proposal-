@@ -4,7 +4,7 @@ import SignUp from "./screens/SignUp";
 import React from "react";
 import ResetPassword from "./screens/ResetPassword";
 import UserScreen from "./screens/UserScreen";
-import { NavigationContainer } from "@react-navigation/native";
+// import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
