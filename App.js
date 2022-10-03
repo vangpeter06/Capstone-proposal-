@@ -26,11 +26,13 @@ export default function App() {
         <Stack.Screen
           name="ResetPassword"
           component={ResetPassword}
-          options={{headerShown: false}} />
+          options={{headerShown: false}} 
+          />
         <Stack.Screen
           name="UserScreen"
           component={UserScreen}
-          options={{headerShown: false}} />
+          options={{headerShown: false}} 
+          />
       </Stack.Navigator>
     </NavigationContainer>
 
