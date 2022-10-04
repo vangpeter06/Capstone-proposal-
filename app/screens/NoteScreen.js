@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar'
 import colors from '../misc/colors'
 import SearchBar from '../components/SearchBar'
 import RoundIconBtn from '../components/RoundIconBtn'
+import NoteInputModal from '../components/NoteInputModal'
 
 const NoteScreen = ({user}) => {
 
@@ -34,6 +35,10 @@ const NoteScreen = ({user}) => {
           style={styles.addBtn} />
         </View>
       </SafeAreaView>
+      <SafeAreaView>
+       <NoteInputModal visible={true} /> 
+      </SafeAreaView>
+      
     </>
   )
 }
