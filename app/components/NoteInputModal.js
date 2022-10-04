@@ -1,9 +1,10 @@
 import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 import colors from '../misc/colors'
+import RoundIconBtn from './RoundIconBtn';
 
 
-const NoteInputModal = ({visible}) => {
+const NoteInputModal = ({ visible, onClose}) => {
 
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
@@ -17,7 +18,9 @@ const NoteInputModal = ({visible}) => {
     if (valueFor === 'desc') setDesc(text);
   }
 
-  console.log(name, desc)
+  const handleSubmit = () => {
+    if (!title.trim() && !desc.trim()) return onClose();
+  }
 
   return (
     <>
@@ -37,7 +40,19 @@ const NoteInputModal = ({visible}) => {
         onChangeText={text => handleOnChangeText(text, 'desc')}
         value={desc}
         />
-       
+        <View style={styles.btnContainer}>
+       <RoundIconBtn 
+       antIconName='check'
+       size={25} 
+       onPress={handleSubmit}
+       />
+       <RoundIconBtn 
+       antIconName='close'
+       size={25}
+       style={{ marginLeft: 25}}
+       />
+
+        </View>
         
       </SafeAreaView>
       <TouchableWithoutFeedback onPress={handleModalClose}>
@@ -72,5 +87,10 @@ const styles = StyleSheet.create({
   modalBG: {
     flex: 1,
     zIndex: -1,
+  },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 15,
   },
 })
