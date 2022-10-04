@@ -9,6 +9,7 @@ import NoteInputModal from '../components/NoteInputModal'
 const NoteScreen = ({user}) => {
 
   const [greet, setGreet] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
 
   const findGreet = () => {
     const hrs = new Date().getHours();
@@ -30,13 +31,13 @@ const NoteScreen = ({user}) => {
         <View style={[StyleSheet.absoluteFillObject, styles.emptyHeaderContainer]}>
           <Text style={styles.emptyHeading}>Add Notes</Text>
           <RoundIconBtn 
-          onPress={() => console.log('opening modal')} 
+          onPress={() => setModalVisible(true)} 
           antIconName='plus' 
           style={styles.addBtn} />
         </View>
       </SafeAreaView>
       <SafeAreaView>
-       <NoteInputModal visible={true} /> 
+       <NoteInputModal visible={modalVisible} oonClose={() => setModalVisible(false)} /> 
       </SafeAreaView>
       
     </>
