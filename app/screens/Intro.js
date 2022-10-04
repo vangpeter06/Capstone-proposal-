@@ -2,6 +2,7 @@ import { StyleSheet, Text, TextInput, View, StatusBar, Dimensions } from 'react-
 import colors from '../misc/colors'
 import React, { useState } from 'react';
 import RoundIconBtn from '../components/RoundIconBtn';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Intro = () => {
