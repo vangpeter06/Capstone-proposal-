@@ -1,11 +1,23 @@
-import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, StatusBar, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
+import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import React, { useState } from 'react'
 import colors from '../misc/colors'
 
 
 const NoteInputModal = ({visible}) => {
 
-  const 
+  const [name, setName] = useState('');
+  const [desc, setDesc] = useState('');
+
+  const handleModalClose = () => {
+    Keyboard.dismiss();
+  }
+
+  const handleOnChangeText = (text, valueFor) => {
+    if (valueFor === 'name') setName(text);
+    if (valueFor === 'desc') setDesc(text);
+  }
+
+  console.log(name, desc)
 
   return (
     <>
@@ -15,11 +27,15 @@ const NoteInputModal = ({visible}) => {
         <TextInput 
         style={[styles.input, styles.title]} 
         placeholder="Name"
+        onChangeText={text => handleOnChangeText(text, 'name')}
+        value={name}
         />
         <TextInput 
         style={[styles.input, styles.desc]} 
         placeholder="Notes"
         multiline
+        onChangeText={text => handleOnChangeText(text, 'desc')}
+        value={desc}
         />
        
         
