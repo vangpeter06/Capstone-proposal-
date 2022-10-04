@@ -4,7 +4,7 @@ import colors from '../misc/colors'
 import RoundIconBtn from './RoundIconBtn';
 
 
-const NoteInputModal = ({ visible, onClose}) => {
+const NoteInputModal = ({ visible, onClose, onSubmit}) => {
 
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
@@ -19,8 +19,21 @@ const NoteInputModal = ({ visible, onClose}) => {
   }
 
   const handleSubmit = () => {
-    if (!name.trim() && !desc.trim()) return onClose()
+    if (!name.trim() && !desc.trim()) return onClose();
+    onSubmit(name, desc);
+    setName('');
+    setDesc('');
+    onClose();
+
   }
+
+  const closeModal = () => {
+    if (!isEdit) {
+      setName('');
+      setDesc('');
+    }
+    onClose();
+  };
 
   return (
     <>
@@ -46,12 +59,14 @@ const NoteInputModal = ({ visible, onClose}) => {
        size={25} 
        onPress={handleSubmit}
        />
+       {name.trim() || desc.trim() ? (
        <RoundIconBtn 
        antIconName='close'
        size={25}
        style={{ marginLeft: 25}}
+       onPress={closeModal}
        />
-
+       ) : null}
         </View>
         
       </SafeAreaView>

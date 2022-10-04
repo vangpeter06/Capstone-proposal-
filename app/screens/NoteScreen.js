@@ -18,6 +18,10 @@ const NoteScreen = ({user}) => {
     setGreet('Evening');
   }
 
+  const handleOnSubmit = (name, desc) => {
+    console.log(name,desc)
+  }
+
   useEffect (() => {
     findGreet();
   }, []);
@@ -37,7 +41,11 @@ const NoteScreen = ({user}) => {
         </View>
       </SafeAreaView>
       <SafeAreaView>
-       <NoteInputModal visible={modalVisible} onClose={() => setModalVisible(false)} /> 
+       <NoteInputModal 
+        visible={modalVisible} 
+        onClose={() => setModalVisible(false)}
+        onSubmit={handleOnSubmit}
+       /> 
       </SafeAreaView>
       
     </>
