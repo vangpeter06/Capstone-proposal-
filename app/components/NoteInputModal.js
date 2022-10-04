@@ -19,7 +19,7 @@ const NoteInputModal = ({ visible, onClose}) => {
   }
 
   const handleSubmit = () => {
-    if (!title.trim() && !desc.trim()) return onClose();
+    if (!name.trim() && !desc.trim()) return onClose()
   }
 
   return (

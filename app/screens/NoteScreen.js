@@ -37,7 +37,7 @@ const NoteScreen = ({user}) => {
         </View>
       </SafeAreaView>
       <SafeAreaView>
-       <NoteInputModal visible={modalVisible} oonClose={() => setModalVisible(false)} /> 
+       <NoteInputModal visible={modalVisible} onClose={() => setModalVisible(false)} /> 
       </SafeAreaView>
       
     </>
