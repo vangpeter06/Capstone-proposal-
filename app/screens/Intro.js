@@ -1,11 +1,11 @@
-import { StyleSheet, Text, TextInput, View, StatusBar, Dimensions } from 'react-native'
+import { StyleSheet, Text, TextInput, View, StatusBar, Dimensions, SafeAreaView } from 'react-native'
 import colors from '../misc/colors'
 import React, { useState } from 'react';
 import RoundIconBtn from '../components/RoundIconBtn';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const Intro = () => {
+const Intro = ({onFinish}) => {
 
   const [name, setName] = useState('');
   const handleOnChangeText = text => setName(text);
@@ -13,12 +13,13 @@ const Intro = () => {
   const handleSubmit = async () => {
     const user = { name: name };
     await AsyncStorage.setItem('user', JSON.stringify(user));
+    if (onFinish) onFinish();
   }
 
   return (
     <>
     <StatusBar hidden />
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
     <Text style={styles.inputTitle}>Enter Your Name to Continue</Text>
       <TextInput 
       style={styles.textInput} 
@@ -27,7 +28,7 @@ const Intro = () => {
       onChangeText={handleOnChangeText}
       />
       <RoundIconBtn antIconName='arrowright' onPress={handleSubmit} />
-    </View>
+    </SafeAreaView>
     </>
   )
 }
