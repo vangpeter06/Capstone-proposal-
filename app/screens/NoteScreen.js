@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import colors from '../misc/colors'
+import SearchBar from '../components/SearchBar'
 
 const NoteScreen = ({user}) => {
 
@@ -21,9 +22,13 @@ const NoteScreen = ({user}) => {
   return (
     <>
       <StatusBar barStyle='dark-content' backgroundColor={colors.LIGHT} />
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
-      </View>
+        <SearchBar containerStyle={{ marginVertical: 15 }} />
+        <View style={styles.emptyHeaderContainer}>
+          <Text style={styles.emptyHeading}>Add Notes</Text>
+        </View>
+      </SafeAreaView>
     </>
   )
 }
@@ -32,12 +37,24 @@ export default NoteScreen
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 20,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    zIndex: 1,
   },
   header: {
     FontSize: 25,
     fontWeight: 'bold',
+  },
+  emptyHeaderContainer: {
+    flex: 1,
+    // justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: -1,
+  },
+  emptyHeading: {
+    fontSize: 30,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    opacity: 0.2,
   },
 })
