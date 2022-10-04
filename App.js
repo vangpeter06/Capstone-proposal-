@@ -1,39 +1,31 @@
-
-import Login from "./screens/Login";
-import SignUp from "./screens/SignUp";
-import React from "react";
-import ResetPassword from "./screens/ResetPassword";
-import UserScreen from "./screens/UserScreen";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-const Stack = createNativeStackNavigator();    
+import { StatusBar } from 'expo-status-bar';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Intro from './app/screens/Intro';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
+  
+  const findUser = async () => {
+    const result = await AsyncStorage.getItem('user');
+    console.log(result)
+    
+  };
+
+  useEffect(() => {
+    findUser();
+  },[])
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}    
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ResetPassword"
-          component={ResetPassword}
-          options={{headerShown: false}} 
-          />
-        <Stack.Screen
-          name="UserScreen"
-          component={UserScreen}
-          options={{headerShown: false}} 
-          />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Intro />
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
