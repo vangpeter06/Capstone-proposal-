@@ -60,4 +60,4 @@ _If you run into any issues or have questions, ideas or concerns please contact 
 
 This software is licensed under the MIT license
 
-Copyright (c) _2022_ _Peter Vang_    
+Copyright (c) _2022_ _Peter Vang_          
