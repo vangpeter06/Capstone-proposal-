@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import colors from '../misc/colors'
 import SearchBar from '../components/SearchBar'
+import RoundIconBtn from '../components/RoundIconBtn'
 
 const NoteScreen = ({user}) => {
 
@@ -25,8 +26,12 @@ const NoteScreen = ({user}) => {
       <SafeAreaView style={styles.container}>
         <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
         <SearchBar containerStyle={{ marginVertical: 15 }} />
-        <View style={styles.emptyHeaderContainer}>
+        <View style={[StyleSheet.absoluteFillObject, styles.emptyHeaderContainer]}>
           <Text style={styles.emptyHeading}>Add Notes</Text>
+          <RoundIconBtn 
+          onPress={() => console.log('opening modal')} 
+          antIconName='plus' 
+          style={styles.addBtn} />
         </View>
       </SafeAreaView>
     </>
@@ -47,7 +52,7 @@ const styles = StyleSheet.create({
   },
   emptyHeaderContainer: {
     flex: 1,
-    // justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
     zIndex: -1,
   },
@@ -57,4 +62,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     opacity: 0.2,
   },
+  addBtn: {
+    position: 'absolute',
+    right: 15,
+    bottom: 50,
+    zIndex: 1,
+  }
 })
