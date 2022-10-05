@@ -18,7 +18,7 @@
 * 3pm-4pm:watching tutorial/coding along https://www.youtube.com/watch?v=VozPNrt-LfE
 * 4pm-5pm: watching tutorial/coding along https://www.youtube.com/watch?v=VozPNrt-LfE
 
-# _Stud Tracker_
+# _Note Tracker_
 
 #### By _**Peter Vang**_
 
@@ -28,13 +28,16 @@
 * React
 * React Native
 * React Expo
-* Firebase/ Firestore
-* 
+* React Stack
+* React Navigation
+* Ant design expo
+* React Native AsyncStorage
+* Xcode simulator
 
 
 ## Description
 
-_This is a React Native app build with expo and firebase. This application is for dog breeders that keeps track of stud clients information. _
+_This is a React Native app build with expo and React Native AsyncStorage. This application is for dog breeders that keeps track of stud clients information or just for note taking._
 
 ## Setup/Installation Requirements
 
@@ -42,17 +45,38 @@ _This is a React Native app build with expo and firebase. This application is fo
 * _Clone this project with the following commands $ git clone https://github.com/vangpeter06/Capstone-proposal-
 * _Navigate to the directory in terminal $ cd Stud-Tracker_
 * _Open project in the command $ code ._
-* _Create a Firebase account if doesn't have one_
-* _Create a Firebase.js file_
-* _On the page of Firebase create a Web App_
-* _Copy the npm SDK Setup to the firebase.js_
-* _Run npm install in the terminal_
-* _Need to download simulator Xcode for apple_
-* _in terminal npm run start to start up the simulator and launch app_
+* _Install all the dependency in terminal input npm install_
+* _Before running app xcode is recommended and download to use the simulator._
+* _For mac user you can download it off appStore and follow the popup for installation_
+`
+`
+_For PC user download VirtualBox here is the site (https://www.virtualbox.org/)_
+* After the installation procedure is complete, start the app and select to install Mac OS X Server (x64). Allocate at least 2GB of RAM (4GB+ is recommended) and 30GB+ of hard disk space to your VM.
+`
+`
+_VirtualBox will make all required OS configurations automatically. You should only go to the    Settings menu and change the following:
+  * Leave unchecked the “Enable EFI” box in the System tab;
+  * Choose two CPUs in the Processor tab;
+  * Increase the video memory above 128MB in the Display tab.
+`
+`
+_Then, install macOS and boot your VM._
+* _It’s important to remember: when configuring macOS, you should enter a valid Apple ID. This Apple account will be needed for Xcode download later._
+* At the final stage of macOS configurations, select the desired resolution and settings in the System Preferences. Once done, installing XCode is simple:
+  * In the Dock, find the App Store application icon and click it. Once the app has started, type Xcode in the search field located at the top-right corner.
+  * Now, click the Install button below the Xcode icon.
+`
+`
+* _To run app in terminal npm run start_
+* _Expo Start Bundler with exp://192.168.68.51:19000_
+* _At this time a QR will popup and if you want to scan it with your phone you can also, but Expo Go needs to be download from your appStore on you device._
+* _At this point you can press i to launch iOS simulator from xcode._
 
 ## Known Bugs
 
-no know bug
+* When apps starts up error JSON value '5' of type NSNumber cannot be converted to CGSize
+ *When enter name after the first screen error JSON value '5' of type NSNumber cannot be converted to CGSize
+* When click note details error JSON value '5' of type NSNumber cannot be converted to CGSize
 
 ## License
 

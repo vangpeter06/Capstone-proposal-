@@ -2,24 +2,28 @@
   Peter Vang
 
 ### Name of Project:
-  Stud Tracker
+  Note Tracker
 
 ### Project's Purpose or Goal: (What will it do for users?)
-  This project is to make user to have a easier and organize source to keep track of their clients when stud out their dog.
+  This is a React Native app build with expo and React Native AsyncStorage. This application is for dog breeders that keeps track of stud clients information or just for note taking.
 
 ### List the absolute minimum features the project requires to meet this purpose or goal:
-  * user login
-  * clients details (name, contact, money for deposit, how much still owe, date)
-  * database that holds all the information
+  * Enter user for start up
+  * Have a input for clients name 
+  * On the bottom you can input details (name, contact, money for deposit, how much still owe, date)
+  * App can be use for holding notes 
+  * Has a search bar to search for clients name or notes saved
+  * Store information from AsyncStorage 
 
 ### What tools, frameworks, libraries, APIs, modules and/or other resources (whatever is specific to your track, and your language) will you use to create this MVP? List them all here. Be specific.
   * React
   * React Native
   * React Expo
-  * Firebase/ Firestore
+  * React Native AsyncStorage
+  * React Native Navigation
+  * React Native Stack
+  * Expo Ant Design
+  * xcode simulator
 
-### If you finish developing the minimum viable product (MVP) with time to spare, what will you work on next? Describe these features here: Be specific.
-  * add information about breeding 
-  * add a place for female heat cycle
 
   
