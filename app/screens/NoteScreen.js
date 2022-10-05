@@ -10,6 +10,17 @@ import Note from '../components/Note'
 import { useNotes } from '../contexts/NoteProvider'
 import NotFound from '../components/NotFound'
 
+const reverseData = data => {
+  return data.sort((a, b) => {
+    const aInt = parseInt(a.time);
+    const bInt = parseInt(b.time);
+    if (aInt < bInt) return 1;
+    if (aInt == bInt) return 0;
+    if (aInt > bInt) return -1;
+  });
+};
+
+
 const NoteScreen = ({user, navigation}) => {
 
   const [greet, setGreet] = useState('');
@@ -35,7 +46,10 @@ const NoteScreen = ({user, navigation}) => {
 
   useEffect (() => {
     findGreet();
+    // AsyncStorage.clear();
   }, []);
+
+  const reverseNotes = reverseData(notes)
 
   const openNote = (note => {
     navigation.navigate('NoteDetail', { note });
@@ -82,8 +96,9 @@ const NoteScreen = ({user, navigation}) => {
             />
             ) : null}
 
-          {resultNotFound ? <NotFound/> : <FlatList
-              data={notes}
+          {resultNotFound ? <NotFound/> : 
+          <FlatList
+              data={reverseNotes}
               numColumns={2}
               columnWrapperStyle={{
                 justifyContent: 'space-between',

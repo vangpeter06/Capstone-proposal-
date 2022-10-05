@@ -32,8 +32,8 @@ const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit}) => {
       // for edit
       onSubmit(name, desc, Date.now());
     } else {
-      onSubmit(title, desc);
-      setTitle('');
+      onSubmit(name, desc);
+      setName('');
       setDesc('');
     }
     onClose();
