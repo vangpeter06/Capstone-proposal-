@@ -6,7 +6,7 @@ const SearchBar = ({containerStyle}) => {
   return (
     <View style={[styles.container, {...containerStyle}]}>
       <TextInput 
-      style={styles.serachBar} 
+      style={styles.searchBar} 
       placeholder="Search Here ..."
       />
     </View>
@@ -18,7 +18,7 @@ export default SearchBar
 const width = Dimensions.get('window').width - 50;
 
 const styles = StyleSheet.create({
-  serachBar: {
+  searchBar: {
     borderWidth: 1,
     borderColor: colors.PRIMARY,
     height: 40,
