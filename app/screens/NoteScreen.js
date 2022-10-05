@@ -1,15 +1,17 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import colors from '../misc/colors'
 import SearchBar from '../components/SearchBar'
 import RoundIconBtn from '../components/RoundIconBtn'
 import NoteInputModal from '../components/NoteInputModal'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NoteScreen = ({user}) => {
 
   const [greet, setGreet] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [notes, setNotes] = useState([]);
 
   const findGreet = () => {
     const hrs = new Date().getHours();
@@ -18,28 +20,40 @@ const NoteScreen = ({user}) => {
     setGreet('Evening');
   }
 
-  const handleOnSubmit = (name, desc) => {
-    console.log(name,desc)
+  const findNotes = async () => {
+    const result = await AsyncStorage.getItem('notes');
+    console.log(result);
+    if(result !== null) setNotes(JSON.parse(result));
+  }
+
+  const handleOnSubmit = async (name, desc) => {
+    const note = { id: Date.now(), name, desc, time: Date.now() };
+    const updatedNotes = [...notes, note];
+    setNotes(updatedNotes)
+    await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes))
   }
 
   useEffect (() => {
+    findNotes();
     findGreet();
   }, []);
 
   return (
     <>
       <StatusBar barStyle='dark-content' backgroundColor={colors.LIGHT} />
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
-        <SearchBar containerStyle={{ marginVertical: 15 }} />
-        <View style={[StyleSheet.absoluteFillObject, styles.emptyHeaderContainer]}>
-          <Text style={styles.emptyHeading}>Add Notes</Text>
-          <RoundIconBtn 
-          onPress={() => setModalVisible(true)} 
-          antIconName='plus' 
-          style={styles.addBtn} />
-        </View>
-      </SafeAreaView>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={styles.container}>
+          <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
+          <SearchBar containerStyle={{ marginVertical: 15 }} />
+          <View style={[StyleSheet.absoluteFillObject, styles.emptyHeaderContainer]}>
+            <Text style={styles.emptyHeading}>Add Notes</Text>
+            <RoundIconBtn 
+            onPress={() => setModalVisible(true)} 
+            antIconName='plus' 
+            style={styles.addBtn} />
+          </View>
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
       <SafeAreaView>
        <NoteInputModal 
         visible={modalVisible} 
