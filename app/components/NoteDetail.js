@@ -18,7 +18,7 @@ const formatDate = (ms) => {
 
   return `${month}/${day}/${year} - ${hrs}:${min}:${sec}`;
 }
-
+      
 const NoteDetail = props => {
   const [note, setNote] = useState(props.route.params.note)
   const headerHeight = useHeaderHeight();
