@@ -1,15 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
 import React from 'react'
+import { useHeaderHeight } from '@react-navigation/elements';
 
 const NoteDetail = props => {
-  console.log(props.route)
+  const { note } = props.route.params;
+  const headerHeight = useHeaderHeight();
   return (
-    <View style={styles.container}>
-      <Text>NoteDetail</Text>
-    </View>
+    <SafeAreaView style={[styles.container, {paddingTop: headerHeight}]}>
+      <Text>{note.name}</Text>
+      <Text>{note.desc}</Text>
+    </SafeAreaView>
   )
 }
 
 export default NoteDetail
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    
+  } 
+})
