@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, ScrollView, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, SafeAreaView, Alert } from 'react-native'
 import React from 'react'
 import { useHeaderHeight } from '@react-navigation/elements';
 import colors from '../misc/colors';
 import RoundIconBtn from './RoundIconBtn';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNotes } from '../contexts/NoteProvider';
 
 const formatDate = (ms) => {
   const date = new Date(ms);
@@ -19,7 +21,38 @@ const formatDate = (ms) => {
 const NoteDetail = props => {
   const { note } = props.route.params;
   const headerHeight = useHeaderHeight();
+  const {setNotes} = useNotes();
 
+  const deleteNote = async () => {
+    const result = await AsyncStorage.getItem('notes');
+    let notes = [];
+    if (result !== null) notes = JSON.parse(result);
+
+    const newNotes = notes.filter(n => n.id !== note.id);
+    setNotes(newNotes);
+    await AsyncStorage.setItem('notes', JSON.stringify(newNotes));
+    props.navigation.goBack();
+  };
+
+  const displayDeleteAlert = () => {
+    Alert.alert(
+      'Are You Sure!',
+      'This action will delete your note permanently!',
+      [
+        {
+          text: 'Delete',
+          onPress: deleteNote,
+        },
+        {
+          text: 'No Thanks',
+          onPress: () => console.log('no thanks'),
+        },
+      ],
+      {
+        cancelable: true,
+      }
+    );
+  };
   
   return (
     <>
@@ -33,7 +66,7 @@ const NoteDetail = props => {
         <RoundIconBtn 
         antIconName='delete' 
         style={{backgroundColor: colors.ERROR, marginBottom: 20 }} 
-        onPress={() => console.log('deleting')}
+        onPress={displayDeleteAlert}
         />
         <RoundIconBtn antIconName='edit'
         onPress={() => console.log('editing')} />
