@@ -8,7 +8,7 @@ import NoteInputModal from '../components/NoteInputModal'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Note from '../components/Note'
 
-const NoteScreen = ({user}) => {
+const NoteScreen = ({user, navigation}) => {
 
   const [greet, setGreet] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -23,7 +23,6 @@ const NoteScreen = ({user}) => {
 
   const findNotes = async () => {
     const result = await AsyncStorage.getItem('notes');
-    console.log(result);
     if(result !== null) setNotes(JSON.parse(result));
   }
 
@@ -39,15 +38,26 @@ const NoteScreen = ({user}) => {
     findGreet();
   }, []);
 
+  const openNote = (note => {
+    navigation.navigate('NoteDetail', { note });
+  })
+
   return (
     <>
       <StatusBar barStyle='dark-content' backgroundColor={colors.LIGHT} />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={styles.container}>
           <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
-          <SearchBar containerStyle={{ marginVertical: 15 }} />
+          {notes.length ? (
+            <SearchBar containerStyle={{ marginVertical: 15 }} />
+            ) : null}
           <FlatList
               data={notes}
+              numColumns={2}
+              columnWrapperStyle={{
+                justifyContent: 'space-between',
+                marginBottom: 15,
+              }}
               keyExtractor={item => item.id.toString()}
               renderItem={({ item }) =>
                 <Note onPress={() => openNote(item)} item={item} />
