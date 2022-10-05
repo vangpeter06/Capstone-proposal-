@@ -19,7 +19,7 @@ const formatDate = (ms) => {
   return `${month}/${day}/${year} - ${hrs}:${min}:${sec}`;
 }
       
-const NoteDetail = props => {
+const NoteDetail = (props) => {
   const [note, setNote] = useState(props.route.params.note)
   const headerHeight = useHeaderHeight();
   const {setNotes} = useNotes();
@@ -40,7 +40,7 @@ const NoteDetail = props => {
   const displayDeleteAlert = () => {
     Alert.alert(
       'Are You Sure!',
-      'This action will delete your note permanently!',
+      'This action will delete your information permanently!',
       [
         {
           text: 'Delete',

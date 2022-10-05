@@ -42,7 +42,7 @@ const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit}) => {
 
   const closeModal = () => {
     if (!isEdit) {
-      setTitle('');
+      setName('');
       setDesc('');
     }
     onClose();
