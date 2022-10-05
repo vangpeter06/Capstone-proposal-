@@ -1,10 +1,10 @@
 import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, StatusBar, TouchableWithoutFeedback, Keyboard } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import colors from '../misc/colors'
 import RoundIconBtn from './RoundIconBtn';
 
 
-const NoteInputModal = ({ visible, onClose, onSubmit}) => {
+const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit}) => {
 
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
@@ -13,6 +13,13 @@ const NoteInputModal = ({ visible, onClose, onSubmit}) => {
     Keyboard.dismiss();
   }
 
+  useEffect(() => {
+    if (isEdit) {
+      setName(note.name);
+      setDesc(note.desc);
+    }
+  }, [isEdit]);
+
   const handleOnChangeText = (text, valueFor) => {
     if (valueFor === 'name') setName(text);
     if (valueFor === 'desc') setDesc(text);
@@ -20,16 +27,22 @@ const NoteInputModal = ({ visible, onClose, onSubmit}) => {
 
   const handleSubmit = () => {
     if (!name.trim() && !desc.trim()) return onClose();
-    onSubmit(name, desc);
-    setName('');
-    setDesc('');
+    
+    if (isEdit) {
+      // for edit
+      onSubmit(name, desc, Date.now());
+    } else {
+      onSubmit(title, desc);
+      setTitle('');
+      setDesc('');
+    }
     onClose();
 
   }
 
   const closeModal = () => {
     if (!isEdit) {
-      setName('');
+      setTitle('');
       setDesc('');
     }
     onClose();
@@ -59,14 +72,14 @@ const NoteInputModal = ({ visible, onClose, onSubmit}) => {
        size={25} 
        onPress={handleSubmit}
        />
-       {name.trim() || desc.trim() ? (
+       {/* {name.trim() || desc.trim() ? ( */}
        <RoundIconBtn 
        antIconName='close'
        size={25}
        style={{ marginLeft: 25}}
        onPress={closeModal}
        />
-       ) : null}
+       {/* ) : null} */}
         </View>
         
       </SafeAreaView>
