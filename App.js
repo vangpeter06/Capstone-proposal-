@@ -1,9 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Intro from './app/screens/Intro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+
+import Intro from './app/screens/Intro';
 import NoteScreen from './app/screens/NoteScreen';
+import NoteDetail from './app/components/NoteDetail';
+
+const Stack = createStackNavigator();
 
 export default function App() {
 
@@ -17,14 +24,20 @@ export default function App() {
   };
 
   useEffect(() => {
-    // findUser();
-    AsyncStorage.clear();
+    findUser();
   },[])
+
+  const renderNoteScreen = (props) => <NoteScreen {...props} user={user} />;
 
   if(!user.name) return <Intro onFinish={findUser} />
   return (
-    <NoteScreen user={user} />
-  );
+    <NavigationContainer>
+      <Stack.Navigator>
+      <Stack.Screen component={renderNoteScreen} name='NoteScreen' />
+      <Stack.Screen component={NoteDetail} name='NoteDetail' />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
 const styles = StyleSheet.create({
