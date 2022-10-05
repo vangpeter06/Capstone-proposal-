@@ -1,14 +1,25 @@
 import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import colors from '../misc/colors'
+import {AntDesign} from '@expo/vector-icons'
 
-const SearchBar = ({containerStyle}) => {
+const SearchBar = ({ containerStyle, value, onChangeText, onClear }) => {
   return (
     <View style={[styles.container, {...containerStyle}]}>
       <TextInput 
       style={styles.searchBar} 
       placeholder="Search Here ..."
+      value={value}
+      onChangeText={onChangeText}
       />
+      {value ? 
+      (<AntDesign name="close" 
+      size={20} 
+      colors={colors.PRIMARY} 
+      onPress={onClear} 
+      style={styles.clearIcon}
+      /> 
+      ) : null}
     </View>
   )
 }
@@ -29,5 +40,10 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 20,
-  }
+    justifyContent: 'center',
+  },
+  clearIcon: {
+    position: 'absolute',
+    right: 10,
+  },
 })
