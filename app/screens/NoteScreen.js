@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, TouchableWithoutFeedback, Keyboard, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import colors from '../misc/colors'
@@ -6,6 +6,7 @@ import SearchBar from '../components/SearchBar'
 import RoundIconBtn from '../components/RoundIconBtn'
 import NoteInputModal from '../components/NoteInputModal'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Note from '../components/Note'
 
 const NoteScreen = ({user}) => {
 
@@ -45,22 +46,36 @@ const NoteScreen = ({user}) => {
         <SafeAreaView style={styles.container}>
           <Text style={styles.header}>{`Good ${greet} ${user.name}`}</Text>
           <SearchBar containerStyle={{ marginVertical: 15 }} />
-          <View style={[StyleSheet.absoluteFillObject, styles.emptyHeaderContainer]}>
-            <Text style={styles.emptyHeading}>Add Notes</Text>
+          <FlatList
+              data={notes}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) =>
+                <Note onPress={() => openNote(item)} item={item} />
+              }
+            />
+            {!notes.length ? (
+            <View
+              style={[
+                StyleSheet.absoluteFillObject,
+                styles.emptyHeaderContainer,
+              ]}
+            >
+              <Text style={styles.emptyHeader}>Add Notes</Text>
+            </View>
+          ) : null}
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
+      {/* <SafeAreaView> */}
             <RoundIconBtn 
             onPress={() => setModalVisible(true)} 
             antIconName='plus' 
             style={styles.addBtn} />
-          </View>
-        </SafeAreaView>
-      </TouchableWithoutFeedback>
-      <SafeAreaView>
        <NoteInputModal 
         visible={modalVisible} 
         onClose={() => setModalVisible(false)}
         onSubmit={handleOnSubmit}
        /> 
-      </SafeAreaView>
+      {/* </SafeAreaView> */}
       
     </>
   )
