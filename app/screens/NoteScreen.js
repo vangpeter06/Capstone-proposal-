@@ -45,8 +45,8 @@ const NoteScreen = ({user, navigation}) => {
   }
 
   useEffect (() => {
-    // findGreet();
-    AsyncStorage.clear();
+    findGreet();
+    // AsyncStorage.clear();
   }, []);
 
   const reverseNotes = reverseData(notes)
